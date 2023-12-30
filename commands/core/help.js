@@ -14,11 +14,11 @@ module.exports = {
         embed.setThumbnail(client.user.displayAvatarURL())
         const commands = client.commands.filter(x => x.showHelp !== false);
 
-        embed.setDescription('お借りしたコードの作者: [Umut Bayraktar](https://youtube.com/UmutBayraktarYT) \nこのBotはいるかがRemixしたもです') ;
+        embed.setDescription('') ;
         embed.addField(`Available - ${commands.size} のコマンドが使用可能`, commands.map(x => `\`${x.name}${x.aliases[0] ? ` (${x.aliases.map(y => y).join(', ')})\`` : '\`'}`).join(' | '));
 
         embed.setTimestamp();
-        embed.setFooter('Music Bot Commands - Remixed by いるか', message.author.avatarURL({ dynamic: true }));
+        embed.setFooter('', message.author.avatarURL({ dynamic: true }));
         message.channel.send({ embeds: [embed] });
     },
 };
