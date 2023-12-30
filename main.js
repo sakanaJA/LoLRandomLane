@@ -32,7 +32,7 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
-    if (message.content === '!ランダム' || message.content === '!random' === '!レーン' === '!lane') {
+    if (message.content === '!ランダム' || message.content === '!random' || message.content === '!レーン' || message.content === '!lane') {
         const voiceChannel = message.member.voice.channel;
 
         if (!voiceChannel) {
