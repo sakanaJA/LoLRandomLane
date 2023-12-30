@@ -32,7 +32,7 @@ client.on('ready', () => {
 });
 
 client.on('message', async message => {
-    if (message.content === '!assignLanes') {
+    if (message.content === '!ランダム' || message.content === '!random' === '!レーン' === '!lane') {
         const voiceChannel = message.member.voice.channel;
 
         if (!voiceChannel) {
@@ -40,7 +40,8 @@ client.on('message', async message => {
         }
 
         try {
-            const members = voiceChannel.members.array();
+            // voiceChannel.membersを配列に変換
+            const members = Array.from(voiceChannel.members.values());
             if (members.length > lanes.length) {
                 return message.channel.send('参加メンバーが多すぎます。');
             }
@@ -62,7 +63,8 @@ function assignLanes(members, lanes) {
     const assignments = {};
 
     members.forEach((member, index) => {
-        assignments[member.user.tag] = shuffledLanes[index];
+        // ここでdisplayNameを使用
+        assignments[member.displayName] = shuffledLanes[index];
     });
 
     return assignments;
@@ -73,8 +75,6 @@ function formatAssignedLanes(assignments) {
         .map(([user, lane]) => `${user}: ${lane}`)
         .join('\n');
 }
-
-client.login(yourToken);
 
 // ボットのログイン
 client.login(process.env.TOKEN);
