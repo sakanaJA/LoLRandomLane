@@ -43,7 +43,7 @@ client.on('message', async message => {
             // voiceChannel.membersを配列に変換
             const members = Array.from(voiceChannel.members.values());
             if (members.length > lanes.length) {
-                return message.channel.send('参加メンバーが多すぎます。');
+                return message.channel.send('参加者が多すぎます。');
             }
 
             const assignedLanes = assignLanes(members, lanes);
@@ -52,7 +52,6 @@ client.on('message', async message => {
             message.channel.send(response);
         } catch (error) {
             console.error(error);
-            message.channel.send('エラーが発生しました。');
         }
     }
 });
@@ -75,6 +74,7 @@ function formatAssignedLanes(assignments) {
         .map(([user, lane]) => `${user}: ${lane}`)
         .join('\n');
 }
+
 
 // ボットのログイン
 client.login(process.env.TOKEN);
